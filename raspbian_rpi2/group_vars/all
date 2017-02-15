@@ -1,0 +1,6 @@
+---
+ip_netmask: 24
+ip_gateway: 192.168.1.1
+ip_addr_raspi2: 192.168.1.5
+ip_addr_pihole: 192.168.1.5
+#ip_addr_torguard_vpn: 192.168.1.5

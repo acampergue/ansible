@@ -1,0 +1,5 @@
+- hosts: raspi2
+  roles:
+    - tmpfs
+    - apt
+    - dhcpcd

@@ -1,0 +1,2 @@
+[raspi2]
+  192.168.1.5 ansible_ssh_user=pi

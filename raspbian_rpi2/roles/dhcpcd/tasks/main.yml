@@ -1,0 +1,16 @@
+---
+- apt:
+    name: dhcpcd5
+    update_cache: yes
+
+- template:
+    src: dhcpcd.conf.j2
+    dest: /etc/dhcpcd.conf
+    owner: root
+    group: netdev
+    mode: "u=rw,g=rw,o=r"
+  notify: restart dhcpcd
+
+- service:
+    name: dhcpcd
+    enabled: yes

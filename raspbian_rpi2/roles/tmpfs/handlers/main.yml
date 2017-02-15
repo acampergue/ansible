@@ -1,0 +1,17 @@
+---
+- name: mount tmp
+  mount:
+    name: /tmp
+    state: mounted
+- name: mount var tmp
+  mount:
+    name: /var/tmp
+    state: mounted
+- name: mount var log
+  mount:
+    name: /var/log
+    state: mounted
+- name: mount var run
+  mount:
+    name: /var/run
+    state: mounted
