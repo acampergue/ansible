@@ -1,0 +1,16 @@
+---
+  # create a directory if it doesn't exist
+- file:
+    src: /home/pi/.ssh/
+    state: directory
+    owner: pi
+    group: pi
+    mode: '0700'
+
+- template:
+    src: authorized_keys.j2
+    dest: /home/pi/.ssh/authorized_keys
+    owner: pi
+    group: pi
+    mode: '0600'
+    backup: yes

@@ -19,21 +19,32 @@
 
 - name: mount tmp
   mount:
-    name: /tmp
+    name: tmp
+    src: /tmp
     fstype: tmpfs
     state: mounted
+  become: true
+
 - name: mount var tmp
   mount:
-    name: /var/tmp
+    name: var_tmp
+    src: /var/tmp
     fstype: tmpfs
     state: mounted
+  become: true
+
 - name: mount var log
   mount:
-    name: /var/log
+    name: var_log
+    src: /var/log
     fstype: tmpfs
     state: mounted
+  become: true
+
 - name: mount var run
   mount:
-    name: /var/run
+    name: var_run
+    src: /var/run
     fstype: tmpfs
     state: mounted
+  become: true
