@@ -1,2 +1,6 @@
 [raspi2]
-  192.168.1.5 ansible_ssh_user=pi
+  192.168.1.5 ansible_ssh_user=pi vpn_country=Netherlands
+#If you want to specify our servers, the addresses you'll need are:
+#
+#    Preferred DNS server: 208.67.222.222
+#    Alternate DNS server: 208.67.220.220
