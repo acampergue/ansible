@@ -2,6 +2,7 @@
 - apt:
     name: dhcpcd5
     update_cache: yes
+  become: true
 
 - template:
     src: dhcpcd.conf.j2
@@ -10,7 +11,10 @@
     group: netdev
     mode: "u=rw,g=rw,o=r"
   notify: restart dhcpcd
+  become: true
+
 
 - service:
     name: dhcpcd
     enabled: yes
+  become: true
