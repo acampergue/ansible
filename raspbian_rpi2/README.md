@@ -5,10 +5,8 @@ upgrade all packages
 prepare tmpfs mounts and mount them
 
 TODO: authorized_keys
-TODO: VPN
-TODO: pi-hole
 
 # How to use
 ~~~~
-ansible-playbook -i hosts site.yml
+ansible-playbook -i hosts site.yml --extra-vars="torguard_user=<USER_NAME> torguard_password=<PASSWORD>" -v
 ~~~~
