@@ -5,3 +5,4 @@
     - apt
     - dhcpcd
     - torguard
+    - pihole

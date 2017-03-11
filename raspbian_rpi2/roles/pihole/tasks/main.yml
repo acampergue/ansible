@@ -1,0 +1,25 @@
+---
+
+# - name: download pi-hole
+#   get_url:
+#     url: https://install.pi-hole.net
+#     dest: /tmp/pihole-install.sh
+#     mode: 0550
+# Example from Ansible Playbooks
+- copy:
+    src: basic-install.sh
+    dest: /tmp/basic-install.sh
+    owner: root
+    group: root
+    mode: 0550
+  tags: pihole
+  become: true
+
+# You can also use the 'args' form to provide the options.
+- name: Install pi-hole
+  shell: /tmp/basic-install.sh >> somelog.txt
+  args:
+    chdir: /tmp/
+    creates: /tmp/pihole-install.log
+  tags: pihole
+  become: true
