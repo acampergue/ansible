@@ -1,5 +1,6 @@
 - hosts: raspi2
   roles:
     - tmpfs
+    - ipv6
     - apt
     - dhcpcd

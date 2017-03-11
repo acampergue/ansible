@@ -1,0 +1,9 @@
+---
+- copy:
+    src: blacklist.conf
+    dest: /etc/modprobe.d/blacklist.conf
+    owner: root
+    group: root
+    mode: 0640
+  tags: ipv6
+  become: true
