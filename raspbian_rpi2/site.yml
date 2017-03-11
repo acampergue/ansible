@@ -4,3 +4,4 @@
     - ipv6
     - apt
     - dhcpcd
+    - torguard

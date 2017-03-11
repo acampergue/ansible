@@ -1,0 +1,53 @@
+---
+
+- file:
+    name: /etc/openvpn/OpenVPN-UDP
+    state: directory
+  tags: openvpn
+
+# Unarchive a file that is already on the remote machine
+# - unarchive:
+#     src: OpenVPN-TCP_2016-08-06.zip
+#     dest: /tmp
+#   tags: openvpn
+
+- unarchive:
+    src: OpenVPN-UDP_2016-08-06.zip
+    dest: /etc/openvpn
+  tags: openvpn
+
+- name: get the list of openvpn configurations
+  command: find /etc/openvpn/OpenVPN-UDP -type f -name *.ovpn
+  register: torguard_conf
+  tags: openvpn
+
+# Add a line to a file if it does not exist, without passing regexp
+# TODO: Looping over fileblogs
+- lineinfile:
+    dest: "{{item}}"
+    regexp: '^auth-user-pass'
+    line: 'auth-user-pass user.txt'
+  with_items: torguard_conf.stdout_lines
+  tags: openvpn
+
+- template:
+    src: user.txt.j2
+    dest: /etc/openvpn/OpenVPN-UDP/user.txt
+    owner: pi
+    group: pi
+    mode: '0600'
+    backup: yes
+  tags: openvpn
+  become: true
+
+# Creates a cron file under /etc/cron.d
+- cron:
+    name: connect to openvpn
+    special_time: reboot
+    user: root
+    job: "/usr/sbin/openvpn --daemon --redirect-gateway --cd /etc/openvpn/OpenVPN-UDP --config TorGuard.{{vpn_country}}.ovpn"
+    cron_file: torguard
+  tags: debug
+  become: true
+
+#@reboot root /usr/sbin/openvpn --daemon --redirect-gateway --cd /etc/openvpn/OpenVPN-UDP --config TorGuard.France.ovpn
